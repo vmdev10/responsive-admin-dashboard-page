@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <Sidebar />
-    <Navbar />
+    <Sidebar :sidebarOpen="sidebarOpen"/>
+    <Navbar @toggleSidebar="sidebarOpen = $event"/>
   </div>
 </template>
 
@@ -15,5 +15,10 @@ export default {
     Sidebar,
     Navbar
   },
+  data() {
+    return {
+      sidebarOpen: true
+    }
+  }
 };
 </script>

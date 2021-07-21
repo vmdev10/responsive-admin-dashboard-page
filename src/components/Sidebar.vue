@@ -1,17 +1,11 @@
 <template>
-  <div class="sidebar-container">
+  <div v-if="sidebarOpen" class="sidebar-container">
     <div class="sidebar-brand">
       <i class="fab fa-slack"></i>
       <h3>Business</h3>
     </div>
 
     <SidebarLinks v-for="sidebarLink in sidebarLinks" :key="sidebarLink" :sidebarLink="sidebarLink"/>
-    <!-- <SidebarLinks title="Dashboard"><i class="fas fa-igloo"></i></SidebarLinks>
-    <SidebarLinks title="Tables"><i class="fas fa-table"></i></SidebarLinks>
-    <SidebarLinks title="Forms"><i class="fas fa-pen-alt"></i></SidebarLinks>
-    <SidebarLinks title="Profile"
-      ><i class="fas fa-user-circle"></i
-    ></SidebarLinks> -->
 
     <DropdownMenu
       v-for="dropdownItem in dropdownItems"
@@ -28,6 +22,12 @@ import SidebarLinks from "./SidebarLinks.vue";
 export default {
   name: "Sidebar",
   components: { DropdownMenu, SidebarLinks },
+  props: {
+    sidebarOpen: {
+      type: Boolean,
+      require: true
+    }
+  },
   data() {
     return {
       sidebarLinks: [
@@ -125,8 +125,9 @@ export default {
 }
 
 .sidebar-brand {
-  background-color: #140152;
-  padding: 1.25rem 2rem;
+  height: 3rem;
+  padding: 0 2rem;
+  border-top: 2px solid #140152;
 
   display: flex;
   gap: 0.75rem;
