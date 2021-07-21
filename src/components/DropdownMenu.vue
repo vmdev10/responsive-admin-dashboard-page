@@ -2,15 +2,16 @@
   <div @click="openDropdownMenu" class="dropdownMenu">
     <div class="dropdownMenu-header">
       <div class="dropdownMenu-title">
-        <slot></slot>
-        <h3>{{ title }}</h3>
+        <i :class="dropdownItem.icon"></i>
+        <h3>{{ dropdownItem.menu }}</h3>
       </div>
 
-      <span class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
+      <span :class="{active: dropdownMenu}" class="arrow-icon"><i class="fas fa-chevron-down"></i></span>
     </div>
 
     <ul v-if="dropdownMenu" class="dropdownMenu-items">
-      <li v-for="dropdownItem in dropdownItems" :key="dropdownItem">{{ dropdownItem }}</li>
+      <!-- Falta add o link -->
+      <li v-for="submenu in dropdownItem.submenu" :key="submenu">{{ submenu.title }}</li>
     </ul>
   </div>
 </template>
@@ -20,12 +21,8 @@
 export default {
   name: "DropdownMenu",
   props: {
-    title: {
-      type: String,
-      require: true,
-    },
-    dropdownItems: {
-      type: Array,
+    dropdownItem: {
+      type: Object,
       require: true
     }
   },
@@ -79,10 +76,14 @@ export default {
   line-height: 1.25rem;
 }
 
+.active svg {
+  transform: rotateX(180deg);
+}
+
 .dropdownMenu-items li {
   background-color: #140152;
   padding: 0.5rem 3.75rem;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   line-height: 1.5rem;
   color: #fff;
 }

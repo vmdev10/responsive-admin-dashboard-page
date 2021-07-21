@@ -1,22 +1,22 @@
 <template>
   <div class="SidebarLinks">
     <div class="SidebarLinks-header">
-      <slot></slot>
-      <h3>{{ title }}</h3>
+      <i :class="sidebarLink.icon"></i>
+      <h3>{{ sidebarLink.menu }}</h3>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'SidebarLinks',
+  name: "SidebarLinks",
   props: {
-    title: {
-      type: String,
-      require: true
-    }
-  }
-}
+    sidebarLink: {
+      type: Object,
+      require: true,
+    },
+  },
+};
 </script>
 
 <style>
@@ -33,7 +33,7 @@ export default {
 .SidebarLinks-header:hover,
 .SidebarLinks-header:active {
   background-color: #fff;
-  color: #04052E;
+  color: #04052e;
   cursor: pointer;
 }
 
